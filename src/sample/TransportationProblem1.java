@@ -1,5 +1,4 @@
 package sample;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -16,12 +15,12 @@ public class TransportationProblem1
 {
     private static int[] demand;
     private static int[] supply;
-    private static double[][] costs;
+    private static double[][] costs; //u nas to bedzie Z czyli zysk
     private static Shipment[][] matrix;
 
     private static class Shipment
     {
-        final double costPerUnit;
+        final double costPerUnit; // mozna usunac
         final int r, c;
         double quantity;
 
@@ -42,8 +41,10 @@ public class TransportationProblem1
             int numSources = sc.nextInt();
             int numDestinations = sc.nextInt();
 
-            List<Integer> src = new ArrayList<>();
-            List<Integer> dst = new ArrayList<>();
+            List<Integer> src = new ArrayList<>(); //lista z podaza
+            List<Integer> dst = new ArrayList<>(); //lista popytem
+            List<Integer> buy = new ArrayList<>(); //lista z podaza
+            List<Integer> sell = new ArrayList<>(); //lista popytem
 
             for (int i = 0; i < numSources; i++)
                 src.add(sc.nextInt());
@@ -69,13 +70,38 @@ public class TransportationProblem1
                 for (int j = 0; j < numDestinations; j++)
                     costs[i][j] = sc.nextDouble();
 
+            //NOWE
+                //wczytanie z pliku dodatkowych danych dla posrednika
+            //ceny zakupu
+            for (int i = 0; i < numSources; i++)
+                buy.add(sc.nextInt());
+            //cena sprzedazy
+            for (int i = 0; i < numDestinations; i++)
+                sell.add(sc.nextInt());
+
+            //blokda
+            int blokadaOdbiorcy, blokadaDostawcy;
+            blokadaDostawcy=sc.nextInt();
+            blokadaOdbiorcy=sc.nextInt();
+
+            //aktualizacja zysku (macierz)
+            for (int i = 0; i < numSources; i++)
+                for (int j = 0; j < numDestinations; j++) { // z= c-kz-kt
+                    costs[i][j] = sell.get(j) - buy.get(i) - costs[i][j];
+                    System.out.println(costs[i][j]);
+                }
+
+            // /NOWE
+
+
+
             //Jesli pojawi sie fikcyjny dostawca/odbiorca ustawienie kosztow transportu na 9999
             if (supply.length > numSources)
             {
                 for (int i = numSources; i < supply.length; i++)
                     for (int j = 0; j < demand.length; j++)
                     {
-                        costs[i][j] = 9999;
+                        costs[i][j] = 0; //bylo 9999
                     }
             }
             else if (demand.length > numDestinations)
@@ -83,7 +109,7 @@ public class TransportationProblem1
                 for (int i = 0; i < supply.length; i++)
                     for (int j = numDestinations; j < demand.length; j++)
                     {
-                        costs[i][j] = 9999;
+                        costs[i][j] = 0; // bylo 9999
                     }
             }
         }

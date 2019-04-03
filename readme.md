@@ -2,7 +2,7 @@
 
 [Sprawko instrukcja](http://home.agh.edu.pl/~solek/wp-content/uploads/raport_wzor.pdf)
 
-[Sprawko Google Doc](https://docs.google.com/document/d/1OQtq8mRcXlL0H8tiZ57L_ViLMm3524e2E1viCr430oA/edit)
+[Sprawko Google Doc](httpse ://docs.google.com/document/d/1OQtq8mRcXlL0H8tiZ57L_ViLMm3524e2E1viCr430oA/edit)
 
 [PDF z zadaniem](http://home.agh.edu.pl/~solek/wp-content/uploads/zagad_posr.pdf)
 

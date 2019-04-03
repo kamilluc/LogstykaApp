@@ -1,0 +1,15 @@
+opcja braku bilansu popytu i podazy
+
+blokada
+
+2 tydzien maja 
+	8 maja w srode nie ma zajec
+	zostaly jendorazowo 	przeniesiesione na piatek
+
+
+
+wcztaj z pliku koszt zakupu, cena sprzedazy i blokady
+
+w macierzy uzyzj Z(zysk) a nie C(koszt trans)
+
+metoda wypelniania leastCostRule zmiana na max profit, nie min koszt transportu
