@@ -33,6 +33,18 @@ public class TransportationProblem1
         }
     }
 
+
+    static void logCurrnetCosts(){
+        StringBuilder stringBuilder=new StringBuilder();
+        for(int i=0;i<costs.length;i++){
+            for(int j=0;j<costs[i].length;j++){
+                stringBuilder.append(costs[i][j]+ ' ');
+            }
+            stringBuilder.append('\n');
+
+        }
+        Logger.getInstance().log(stringBuilder.toString());
+    }
     static void init(String filename) throws Exception
     {
 
@@ -90,7 +102,8 @@ public class TransportationProblem1
                     costs[i][j] = sell.get(j) - buy.get(i) - costs[i][j];
                     System.out.println(costs[i][j]);
                 }
-
+Logger.getInstance().log("Macierz zyskow po inicjalizacji");
+                logCurrnetCosts();
             // /NOWE
 
 
@@ -360,6 +373,7 @@ public class TransportationProblem1
             writer = new PrintWriter(outputfilename + ".txt", "UTF-8");
 
             double totalCosts = 0;
+            StringBuilder stringBuilder=new StringBuilder();
 
             for (int r = 0; r < supply.length; r++)
             {
@@ -370,17 +384,21 @@ public class TransportationProblem1
                     if (s != null && s.r == r && s.c == c)
                     {
                         writer.printf(" %3s ", (int) s.quantity);
-
+                        stringBuilder.append((int) s.quantity);
                         if (s.costPerUnit < 9999)
                             totalCosts += (s.quantity * s.costPerUnit);
                     }
-                    else
+                    else {
                         writer.printf("  -  ");
+                        stringBuilder.append(" - ");
+                    }
                 }
                 writer.println();
+                stringBuilder.append("\n");
             }
+            Logger.getInstance().log(stringBuilder.toString());
             writer.printf("%nCalkowity koszt: %s%n%n", totalCosts);
-
+            Logger.getInstance().log("Calkowity koszt: "+totalCosts);
             writer.close();
         }
         catch (FileNotFoundException e)

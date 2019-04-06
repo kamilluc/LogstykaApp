@@ -119,6 +119,7 @@ public class Controller implements Initializable {
         }
 
 
+
         //ZAPiS DANYCH Z GUI DO PLIKU
         try (PrintWriter out = new PrintWriter("input1.txt")) {
             out.println(sb);
@@ -128,14 +129,19 @@ public class Controller implements Initializable {
         try {
             for (String filename : new String[]{"input1.txt"/*, "input2.txt"*/})
             {
+                Logger.getInstance().log("Wczytanie danych wejściowych");
                 TransportationProblem1.init(filename);
                 TransportationProblem1.leastCostRule();
+                Logger.getInstance().log("Macierz zysków po metodzie leastCostRule");
+                TransportationProblem1.logCurrnetCosts();
+
                 //TransportationProblem1.northWestCornerRule();
                 TransportationProblem1.printResult(filename);
                 TransportationProblem1.saveFile("solution" + filename);
                 TransportationProblem1.steppingStone();
                 TransportationProblem1.printResult(filename);
                 TransportationProblem1.saveFile("finalsolution" + filename);
+                Logger.getInstance().log("Koniec pracy programu");
             }
 
 
